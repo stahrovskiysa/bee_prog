@@ -1,0 +1,372 @@
+
+body {
+
+
+    min-width: 960px;
+    max-width: 1200px;
+    margin: 10px auto;
+
+    background: url(/img/fon.png) repeat;
+
+
+}
+
+.clear{
+    clear: both;
+}
+
+
+/* header  */
+
+header {
+
+    padding: 5px; /* Отступы вокруг текста */
+    color: #ffe; /* Цвет текста */
+    width: 100%; /* Ширина */
+    height: 100px;
+/* overflow: auto; */
+
+    background: #129FEA; /* Цвет фона */
+ /*   background: linear-gradient(to top, #ffffff, #129FEA);  */
+
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+    border: 1px solid #000000;
+    border-radius: 10px 10px 0 0;
+
+
+    box-shadow:
+            inset rgba(0,0,0,.5) -3px -3px 8px,
+            inset rgba(255,255,255,.9) 3px 3px 8px,
+            rgba(0,0,0,.8) 3px 3px 8px -3px;
+
+
+
+}
+header h1
+{
+    vertical-align: middle;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+
+}
+
+#baner  {
+    height: 75px;
+    width: 300px;
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 50px;
+}
+
+
+#namesite {
+    font-size: 30px;
+    text-align: left;
+    display: inline-block;
+    margin-left:  50px;
+    margin-top: 20px;
+
+}
+
+
+/*
+header h1
+{
+    font-size: 30px;
+    text-align: left;
+    display: inline-block;
+    margin-left:  50px;
+    margin-top: 20px;
+
+}
+
+*/
+
+
+
+/* end header */
+
+
+/*  меню   */
+.menu {
+    padding: 0;
+    padding-right: 10px;
+    margin: 0;
+
+    font-family:  Verdana;
+    width: 100%;
+    height: 45px;
+    background: #cad2d3;   /* Цвет фона */
+
+
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+    border: 1px solid #000000;
+
+    border-radius: 0 0 10px 10px;
+}
+
+
+.menu li {
+    list-style: none;
+    float: right;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    text-align: center;
+    background: #cad2d3;
+   /* background: #D0D0D0;  */
+    position: relative;
+    padding-top: 12px;
+    border-left: 0.5px solid #000;
+
+
+}
+
+
+.menu li ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 42px;
+}
+
+.menu li ul li{
+    float: none;
+    height: 30px;
+    margin: 0;
+    width: 150px;
+    text-align: center;
+    background: #95DF8E;
+}
+
+.menu li a{
+    display: block;
+    width: 150px;
+    height: 30px;
+    color:    #006A35;
+    text-decoration: none;
+
+}
+
+.menu li:hover ul{
+    display: block;
+}
+
+.menu li:hover{
+    background: #35C835;
+}
+
+.menu li ul li ul{
+    left:150px;
+    top: 0;
+}
+
+.menu li ul li ul li{display: none;}
+.menu li ul li:hover ul li{display: block;}
+
+
+
+/* end menu */
+
+
+
+
+.block_content{
+
+    width: 100%; /* Ширина */
+
+  /*   height: 700px;  */
+    overflow: hidden;
+
+ /*   height: 700px; */
+ /*   background: #2cc36b;  */
+    padding: 5px; /* Поля */
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+  /*  border: 1px solid #000;  */
+
+
+}
+
+
+.block1 {
+    width: 20%;
+    height: 660px;
+    background: #cad2d3;
+    color: #0000FF;
+    padding: 10px 10px 10px 10px;
+
+
+    border: solid 1px black;
+    float: left;
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+
+
+.button {
+    border: 1px solid #333; /* Рамка */
+    display: inline-block;
+    padding: 5px 15px; /* Поля */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: none; /* Убираем подчёркивание */
+    color: #000000; /* Цвет текста */
+    border-radius: 5px 5px 5px 5px;
+
+}
+.button:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Тень */
+    background: linear-gradient(to bottom, #fcfff4, #e9e9ce); /* Градиент */
+    color: #a00;
+}
+
+
+
+
+.block_about  {
+    width: 70%;
+    background: #cad2d3;;
+
+    font-size: 14pt; /* Размер шрифта в пунктах */
+
+    padding: 20px 20px 20px 20px;
+
+    /* height: 660px; */
+    overflow: hidden;
+
+
+    border: solid 1px black;
+    float: right;
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+
+
+
+
+
+.block_info {
+    width: 70%;
+    background: #cad2d3;;
+
+    font-size: 14pt; /* Размер шрифта в пунктах */
+
+    padding: 20px 20px 20px 20px;
+
+    /* height: 660px; */
+    overflow: hidden;
+
+
+    border: solid 1px black;
+    float: right;
+    border-radius: 10px 10px 10px 10px;
+
+}
+
+
+.block_info  p
+{
+    color: #000000;
+    font-family: "Times New Roman";
+    font-size: 1.0em;
+
+}
+
+
+
+
+
+
+.leftimg {
+    float:left; /* Выравнивание по левому краю */
+    margin: 7px 7px 7px 0;
+}
+
+.rightimg  {
+    float: right; /* Выравнивание по правому краю  */
+    margin: 7px 0 7px 7px; /* Отступы вокруг картинки */
+}
+
+
+
+/* футер */
+
+
+footer {
+    width: 100%; /* Ширина */
+    height: 40px;
+
+
+    background: #8fa09b;  /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    padding: 5px; /* Отступы вокруг текста */
+
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+
+    border: 1px solid #000;
+    border-radius: 10px 10px 10px 10px;
+
+
+    box-shadow:
+            inset rgba(0,0,0,.5) -3px -3px 8px,
+            inset rgba(255,255,255,.9) 3px 3px 8px,
+            rgba(0,0,0,.8) 3px 3px 8px -3px;
+
+
+}
+
+footer h4
+{
+    text-align: left;
+
+    display: inline-block;
+    margin-right:  15px;
+
+}
+
+.namefooter
+{
+     float: left;
+}
+.namefooter h4
+{
+    vertical-align: middle;
+}
+
+.emailn
+{
+    height: 20px;
+    float: left;
+
+    /* margin-bottom: 35px;  */
+    padding-bottom: 5px;
+
+}
+
+
+
+
+/* конец футера */

@@ -1,0 +1,56 @@
+body {
+
+    margin: 20px;
+    background: url(/img/fon.png) repeat;
+
+}
+
+
+.forminput {
+
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto; /* Отступ слева и справа */
+
+    -moz-box-sizing: border-box; /* Для Firefox */
+    -webkit-box-sizing: border-box; /* Для Safari и Chrome */
+    box-sizing: border-box; /* Для IE и Opera */
+    border: 1px solid #000000;
+    font-size: 20px;
+    border-radius: 10px;
+
+}
+
+.forminput h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.forminput label{
+    font-size: 20px;
+
+}
+
+.formbutton
+{
+    font-size: 15px;
+}
+
+.tb1 {
+    background-color: #fffce7;
+ /*   border-top: solid 5px #c9c9c9; */
+}
+
+
+.label {
+
+    display: inline-block;
+    width: 20em;
+    vertical-align: top;
+    text-align: right;
+    margin-rigth: 15px;
+
+}
+
+
+
