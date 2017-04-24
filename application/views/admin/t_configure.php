@@ -38,6 +38,22 @@
 
 
     <h2>Параметры конфигурация сайта</h2>
+<?php
+    $username = $this->session->userdata('username');
+    $nomnom = $this->session->userdata('nomnom');
+
+$id = $this->session->userdata('id');
+
+
+
+
+echo "Вы вошли под пользователем:".$username;
+echo "<br>";
+echo "тестовая строка".$nomnom;
+
+
+
+?>
 
     <h4><a href="/admin/">Назад</a></h4>
 

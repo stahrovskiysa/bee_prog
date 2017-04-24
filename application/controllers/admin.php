@@ -11,7 +11,8 @@ class Admin extends CI_Controller
           $this->load->helper(array('form', 'url'));
            $this->load->library('form_validation');
            $this->load->library('grocery_CRUD');
-//
+           $this->load->library('session');
+
        }
 
 
@@ -25,16 +26,7 @@ class Admin extends CI_Controller
 
 
 
-
 // таблица  пользователей
-
-
-//    public function page_users()
-//    {
-//       $this->load->model('blog/users_model');
-//        $data['query'] = $this->users_model->get_last_users();
-//        $this->load->view('admin/page_users', $data);
-//    }
 
 
     public function add_users()
@@ -57,8 +49,6 @@ class Admin extends CI_Controller
         $this->load->view('admin/page_users', $data);
 
     }
-
-
 
 
 
@@ -110,7 +100,9 @@ class Admin extends CI_Controller
 
     }
 
-    //   проверить  пароль
+    //  -------------------------------------------------------------------------
+
+    //   проверить  пользователя
 
     public function adm_users()
     {
@@ -122,12 +114,28 @@ class Admin extends CI_Controller
         $p1 = md5($passw.$salt);
 
         $h1="dca351de8e19a9c751c7f42f03f28832";
+        $nomnomn ="111";
+
 
 
         if ($p1 === $h1)
         {
             if  ($usern === "AdminSSA") {
                 $this->load->model('blog/users_model');
+
+
+
+
+                $newdata = array(
+                    'username'  => $usern,
+                    'nomnom' => $nomnomn,
+                    'logged_in' => TRUE
+                );
+
+                $this->session->set_userdata($newdata);
+
+
+
                 $this->load->view('admin/adm_users');
                 echo "Успешно вошел";
             }
@@ -148,6 +156,7 @@ class Admin extends CI_Controller
     {
 
         $this->load->model('blog/blog_model');
+
 
 
         /* создали экземпляр CRUD */
@@ -177,7 +186,14 @@ class Admin extends CI_Controller
         $output = $crud->render();
 
 
-        $this->load->view('admin/t_configure',(array)$output);
+        $username= $this->session->userdata('username');
+
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/t_configure', (array)$output);
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
 
 
     }
@@ -314,9 +330,6 @@ class Admin extends CI_Controller
         $crud->set_field_upload('urlimg', 'content_img/');
 
 
-
-
-
         $crud->set_rules('urlarticle','URL параметр','valid_url');
         $crud->order_by('idcont', 'acs');
 
@@ -336,7 +349,11 @@ class Admin extends CI_Controller
     }
 
 
-
+//  очистка сессий
+        function t__sees_destroy()
+        {
+            $this->session->sess_destroy();
+        }
 
 
 
