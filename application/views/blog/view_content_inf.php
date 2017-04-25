@@ -34,7 +34,7 @@
             echo "<b>Дата:  &nbsp;&nbsp; </b>".mysql_russian_date($item->datacont,1)."&nbsp;&nbsp;&nbsp;&nbsp;";
             echo "<b> О меде: &nbsp;&nbsp; </b>".$item->info;
             echo "<hr>";
-            echo '"<img class="leftimg"  src="'.$item->urlimg.'" width="250px" height="auto" alt="нет рисунка"></td>';
+            echo '"<img class="leftimg"  src="/content_img/'.$item->urlimg.'" width="250px" height="auto" alt="нет рисунка"></td>';
 
 
             echo "<b>Статья:  &nbsp;&nbsp; </b> <p>".$item->textinf."</p>";

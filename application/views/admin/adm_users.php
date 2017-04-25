@@ -17,6 +17,7 @@
     <h3><a href="/admin/t_comment">Отзывы пользователей о продукции</a></h3>
     <h3><a href="/admin/t_content_inf">Статьи о меде и пчелах</a></h3>
 
+    <h3><a href="/admin/t_content_pchelovod">Статьи о пчеловодах и пчеловодстве</a></h3>
 
 
     <h3><a href="/admin/t__sees_destroy">Выход из модуля администрирования</a></h3>

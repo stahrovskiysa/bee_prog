@@ -121,6 +121,15 @@ class Blog extends CI_Controller
     }
 
 
+    public function view_content_pchelovod()
+    {
+
+        $this->load->model('blog/blog_model');
+        $data['contentinf'] = $this->blog_model->get_last_content_pchelovod();
+        $this->load->view('blog/view_content_pchelovod', $data);
+    }
+
+
 
 
 

@@ -73,7 +73,7 @@ foreach ($configure as $item)
             <a href="#">Статьи</a>
             <ul>
                 <li><a href="/blog/view_content_inf">О меде и пчелах</a></li>
-                <li><a href="#">О пчеловодстве</a></li>
+                <li><a href="/blog/view_content_pchelovod">О пчеловодстве</a></li>
                 <li>
                     <a href="#">Статьи3</a>
                     <ul>
@@ -116,7 +116,7 @@ foreach ($configure as $item)
 
         <h2><a href="/blog/view_price">Наши цены</a></h2>
         <br>
-        <h2><a href="/blog/page3">Статьи о пчеловодстве</a></h2>
+        <h2><a href="/blog/view_content_pchelovod">Статьи о пчеловодстве</a></h2>
         <br>
         <h2><a href="/blog/view_content_inf">Статьи о меде и пчелах</a></h2>
         <br>

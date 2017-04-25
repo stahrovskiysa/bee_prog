@@ -34,8 +34,9 @@ class Admin extends CI_Controller
     public function adm_users()
     {
 
-        $passw = $this->input->post('pass');
-        $usern = $this->input->post('user');
+
+        $passw = htmlspecialchars(strip_tags(trim($this->input->post('pass'))));
+        $usern = htmlspecialchars(strip_tags(trim($this->input->post('user'))));
 
 
         $nomnomn="111";
@@ -47,9 +48,7 @@ class Admin extends CI_Controller
         foreach ($query->result() as $row)
         {
             $h1 = $row->hs1;
-
         }
-
 
         $this->db->where('nameconfig','salt');
         $query = $this->db->get('configure');
@@ -58,10 +57,6 @@ class Admin extends CI_Controller
         {
             $salt = $row->parametrstr;
         }
-
-
-
-
 
            $p1 = md5($passw . $salt);
 
@@ -319,6 +314,76 @@ class Admin extends CI_Controller
     }
 
 
+    /* таблица Контент (статья о пчеловодах и пчеловодстве)  */
+    public function t_content_pchelovod ()
+
+    {
+        $this->load->model('blog/blog_model');
+
+        /* создали экземпляр CRUD */
+        $crud = new grocery_CRUD();
+
+        $crud->set_table('content_pchelovod');
+
+
+        $crud->columns('idcontp', 'datacontp', 'infop', 'textinfp', 'urlimgp', 'urlarticlep');
+        $crud->fields('idcontp', 'datacontp', 'infop', 'textinfp', 'urlimgp', 'urlarticlep');
+        $crud->add_fields('datacontp', 'infop', 'textinfp', 'urlimgp', 'urlarticlep');
+        $crud->edit_fields('datacontp', 'infop', 'textinfp', 'urlimgp', 'urlarticlep');
+        $crud->required_fields('idcontp', 'datacontp', 'infop', 'textinfp', 'urlimgp', 'urlarticlep');
+
+        /* Но вместо адреса картинки покажем саму картинку */
+        $crud->callback_column('urlimgp', array($this, 'pic_content_pchelovod_show'));
+
+
+        $crud->field_type('urlarticlep', 'url');
+
+
+        $crud->display_as('idcontp', 'Id')
+            ->display_as('datacontp', 'Дата ввода')
+
+            ->display_as('infop', 'Краткая информация (для шапки)')
+            ->display_as('textinfp', 'Текст статьи')
+            ->display_as('urlimgp', 'Картинка для статьи (URL картинки)')
+
+            ->display_as('urlarticlep', 'Ссылка на статью');
+
+        /*сгенерирует при сохранении картинки */
+        $crud->set_field_upload('urlimgp', 'content_img/');
+
+
+        $crud->set_rules('urlarticlep','URL параметр','valid_url');
+        $crud->order_by('idcontp', 'acs');
+
+        $crud->set_subject('запись');
+        $output = $crud->render();
+
+        $username= $this->session->userdata('username');
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/t_content_inf', (array)$output);
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
+
+
+    }
+
+    function pic_content_pchelovod_show($primary_key, $row) {
+        if (is_file("content_img/" . $row->urlimgp)) {
+            return '<img src='.'"/content_img/' . $row->urlimgp.'"'.' width="150px" height="auto" alt="нет рисунка"/>';
+
+        }
+        return "";
+    }
+
+
+
+
+
+
+
+
 //  очистка сессий
         function t__sees_destroy()
         {
@@ -333,6 +398,19 @@ class Admin extends CI_Controller
         $this->load->model('blog/users_model');
         $data['query'] = $this->users_model->get_last_users();
         $this->load->view('admin/page_users', $data);
+
+
+        $username= $this->session->userdata('username');
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/page_users', $data);
+
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
+
+
+
     }
 
 

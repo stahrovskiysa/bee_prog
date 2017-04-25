@@ -54,6 +54,15 @@ class Blog_model extends CI_Model {
     }
 
 
+    public function get_last_content_pchelovod()
+    {
+
+        $query = $this->db->get('content_pchelovod');
+        return $query->result();
+    }
+
+
+
 
 
 }
