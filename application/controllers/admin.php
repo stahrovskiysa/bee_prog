@@ -26,79 +26,6 @@ class Admin extends CI_Controller
 
 
 
-// таблица  пользователей
-
-
-    public function add_users()
-    {
-        $this->load->model('blog/users_model');
-        $this->load->view('admin/add_users');
-    }
-
-
-    public function add_users1()
-    {
-        $this->load->model('blog/users_model');
-        $add['family'] = $this->input->post('family');
-        $add['name'] = $this->input->post('name');
-        $add['soname'] = $this->input->post('soname');
-        $add['textusers'] = $this->input->post('textusers');
-        $this->db->insert('users', $add);
-
-        $data['query'] = $this->users_model->get_last_users();
-        $this->load->view('admin/page_users', $data);
-
-    }
-
-
-
-    public function del_users($row)
-    {
-        $data = array('iduser' => $row);
-        $this->load->view('admin/del_users', $data);
-
-    }
-
-
-    public function del_users1($row)
-    {
-        $this->load->model('blog/users_model');
-
-        $this->db->delete('users', array('iduser' => $row));
-
-        $data['query'] = $this->users_model->get_last_users();
-        $this->load->view('admin/page_users', $data);
-    }
-
-
-    public function update_users($row)
-    {
-
-        $query = $this->db->get_where("users", array("iduser" => $row));
-        $data['query'] = $query->result();
-
-        $this->load->view('admin/update_users', $data);
-
-    }
-
-
-    public function update_users1($row)
-    {
-
-        $iduser['iduser'] = $row;
-
-        $this->load->model('blog/users_model');
-        $update['family'] = $this->input->post('family');
-        $update['name'] = $this->input->post('name');
-        $update['soname'] = $this->input->post('soname');
-        $update['textusers'] = $this->input->post('textusers');
-
-        $this->db->update('users', $update, $iduser);
-
-        $data['query'] = $this->users_model->get_last_users();
-        $this->load->view('admin/page_users', $data);
-
-    }
 
     //  -------------------------------------------------------------------------
 
@@ -110,20 +37,39 @@ class Admin extends CI_Controller
         $passw = $this->input->post('pass');
         $usern = $this->input->post('user');
 
-        $salt = "EtoVamNeTiliTiliEtoVamNeTraliVali";
-        $p1 = md5($passw.$salt);
 
-        $h1="dca351de8e19a9c751c7f42f03f28832";
-        $nomnomn ="111";
+        $nomnomn="111";
+        $h1="";
 
+        $this->db->where('username',$usern);
+        $query = $this->db->get('users');
+
+        foreach ($query->result() as $row)
+        {
+            $h1 = $row->hs1;
+
+        }
+
+
+        $this->db->where('nameconfig','salt');
+        $query = $this->db->get('configure');
+
+        foreach ($query->result() as $row)
+        {
+            $salt = $row->parametrstr;
+        }
+
+
+
+
+
+           $p1 = md5($passw . $salt);
 
 
         if ($p1 === $h1)
         {
             if  ($usern === "AdminSSA") {
                 $this->load->model('blog/users_model');
-
-
 
 
                 $newdata = array(
@@ -133,8 +79,6 @@ class Admin extends CI_Controller
                 );
 
                 $this->session->set_userdata($newdata);
-
-
 
                 $this->load->view('admin/adm_users');
                 echo "Успешно вошел";
@@ -239,7 +183,16 @@ class Admin extends CI_Controller
         $crud->set_subject('запись');
         $output = $crud->render();
 
-        $this->load->view('admin/t_price_med',(array)$output);
+
+        $username= $this->session->userdata('username');
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/t_price_med', (array)$output);
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
+
+
 
     }
 
@@ -288,7 +241,17 @@ class Admin extends CI_Controller
         $crud->set_subject('запись');
         $output = $crud->render();
 
-        $this->load->view('admin/t_comment',(array)$output);
+
+        $username= $this->session->userdata('username');
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/t_comment', (array)$output);
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
+
+
+
 
     }
 
@@ -336,7 +299,14 @@ class Admin extends CI_Controller
         $crud->set_subject('запись');
         $output = $crud->render();
 
-        $this->load->view('admin/t_content_inf',(array)$output);
+        $username= $this->session->userdata('username');
+        if ($username === "AdminSSA") {
+            $this->load->view('admin/t_content_inf', (array)$output);
+        }
+        else {
+            echo "Вы не автаризовались на сайте";
+        }
+
 
     }
 
@@ -354,6 +324,90 @@ class Admin extends CI_Controller
         {
             $this->session->sess_destroy();
         }
+
+
+// таблица  пользователей
+
+    public function page_users()
+    {
+        $this->load->model('blog/users_model');
+        $data['query'] = $this->users_model->get_last_users();
+        $this->load->view('admin/page_users', $data);
+    }
+
+
+
+
+    public function add_users()
+    {
+        $this->load->model('blog/users_model');
+        $this->load->view('admin/add_users');
+    }
+
+
+    public function add_users1()
+    {
+        $this->load->model('blog/users_model');
+        $add['family'] = $this->input->post('family');
+        $add['name'] = $this->input->post('name');
+        $add['soname'] = $this->input->post('soname');
+        $add['textusers'] = $this->input->post('textusers');
+        $this->db->insert('users', $add);
+
+        $data['query'] = $this->users_model->get_last_users();
+        $this->load->view('admin/page_users', $data);
+
+    }
+
+
+
+    public function del_users($row)
+    {
+        $data = array('iduser' => $row);
+        $this->load->view('admin/del_users', $data);
+
+    }
+
+
+    public function del_users1($row)
+    {
+        $this->load->model('blog/users_model');
+
+        $this->db->delete('users', array('iduser' => $row));
+
+        $data['query'] = $this->users_model->get_last_users();
+        $this->load->view('admin/page_users', $data);
+    }
+
+
+    public function update_users($row)
+    {
+
+        $query = $this->db->get_where("users", array("iduser" => $row));
+        $data['query'] = $query->result();
+
+        $this->load->view('admin/update_users', $data);
+
+    }
+
+
+    public function update_users1($row)
+    {
+
+        $iduser['iduser'] = $row;
+
+        $this->load->model('blog/users_model');
+        $update['family'] = $this->input->post('family');
+        $update['name'] = $this->input->post('name');
+        $update['soname'] = $this->input->post('soname');
+        $update['textusers'] = $this->input->post('textusers');
+
+        $this->db->update('users', $update, $iduser);
+
+        $data['query'] = $this->users_model->get_last_users();
+        $this->load->view('admin/page_users', $data);
+
+    }
 
 
 

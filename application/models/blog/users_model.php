@@ -18,7 +18,8 @@ class Users_model extends CI_Model {
 
     public function get_last_users_where($str)
     {
-        $query = $this->db->get_where('users',$str);
+        $this->db->where('username',$str);
+        $query = $this->db->get('users');
         return $query->result();
     }
 
