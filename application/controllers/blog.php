@@ -13,7 +13,7 @@ class Blog extends CI_Controller
         $this->load->helper('daterus');
     }
 
-
+// запуск основной формы
     public function index()
     {
 
